@@ -8,6 +8,7 @@ namespace DonactivaRD
 {
     public static class OrganizacionHelper
     {
+
         public static void MenuOrganizaciones(List<Organizacion> organizaciones)
         {
             int opcion = 0;

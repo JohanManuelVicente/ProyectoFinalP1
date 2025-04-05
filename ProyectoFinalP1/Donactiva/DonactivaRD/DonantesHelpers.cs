@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace DonactivaRD
 {
+
     public static class DonanteHelper
     {
+
         public static void MenuDonantes(List<Donante> donantes)
         {
             int opcion = 0;
