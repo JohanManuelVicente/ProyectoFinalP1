@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DonactivaRD
 {
-    public class Donantes
+    public class Donante
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
