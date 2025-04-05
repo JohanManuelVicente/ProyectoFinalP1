@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace DonactivaRD
 {
-    internal class Donacion
+    public class Donacion
     {
+        public int Id { get; set; }
+        public string Tipo { get; set; } // Monetaria, Especie, Tiempo
+        public string Descripcion { get; set; }
+        public decimal Monto { get; set; }
+        public DateTime Fecha { get; set; }
+        public int DonanteId { get; set; }
+        public int OrganizacionId { get; set; }
+        public int? CampañaId { get; set; }
     }
 }

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace DonactivaRD
 {
-    public class Organizacion
+    public class Donantes
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public string Tipo { get; set; }
-        public string RNC { get; set; }
-        public string Direccion { get; set; }
-        public string Contacto { get; set; }
         public string Correo { get; set; }
+        public string Telefono { get; set; }
+        public string Cedula { get; set; }
+        public string Direccion { get; set; }
+        public string Tipo { get; set; } // Individual o Empresa
     }
 }
