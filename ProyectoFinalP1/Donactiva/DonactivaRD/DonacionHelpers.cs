@@ -17,7 +17,7 @@ namespace DonactivaRD
             {
                 Console.WriteLine("\n--- Menú Donaciones ---");
                 Console.WriteLine("1. Registrar Donación");
-                Console.WriteLine("2. Listar Donaciones");
+                Console.WriteLine("2. Mostrar Donaciones");
                 Console.WriteLine("3. Buscar Donaciones por Donante");
                 Console.WriteLine("4. Eliminar Donación");
                 Console.WriteLine("5. Volver al menú principal");
@@ -59,21 +59,21 @@ namespace DonactivaRD
 
             Console.WriteLine("Ingrese el ID del Donante:");
             DonanteHelper.ListarDonantes(donantes);
-            nueva.IdDonante = Convert.ToInt32(Console.ReadLine());
+            nueva.DonanteId = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Ingrese el ID de la Organización receptora:");
             OrganizacionHelper.ListarOrganizaciones(organizaciones);
-            nueva.IdOrganizacion = Convert.ToInt32(Console.ReadLine());
+            nueva.OrganizacionId = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Ingrese el ID de la Campaña asociada:");
             CampañaHelper.ListarCampañas(campañas);
-            nueva.IdCampaña = Convert.ToInt32(Console.ReadLine());
+            nueva.CampañaId = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Ingrese el tipo de donación (dinero, alimento, etc.):");
             nueva.Tipo = Console.ReadLine();
 
             Console.WriteLine("Ingrese el monto o descripción:");
-            nueva.MontoDescripcion = Console.ReadLine();
+            nueva.Descripcion = Console.ReadLine();
 
             Console.WriteLine("Fecha de la donación (YYYY-MM-DD):");
             nueva.Fecha = DateTime.Parse(Console.ReadLine());
@@ -90,10 +90,10 @@ namespace DonactivaRD
                 return;
             }
 
-            Console.WriteLine("ID\tDonanteID\tOrganizacionID\tCampañaID\tTipo\t\tMonto/Descripción\tFecha");
+            Console.WriteLine("\nID\tDonanteID\tOrganizacionID\tCampañaID\tTipo\t\tMonto/Descripción\tFecha");
             foreach (var d in donaciones)
             {
-                Console.WriteLine($"{d.Id}\t{d.IdDonante}\t\t{d.IdOrganizacion}\t\t{d.IdCampaña}\t\t{d.Tipo}\t\t{d.MontoDescripcion}\t\t{d.Fecha.ToShortDateString()}");
+                Console.WriteLine($"{d.Id}\t{d.DonanteId}\t\t{d.OrganizacionId}\t\t{d.CampañaId}\t\t{d.Tipo}\t\t{d.Descripcion}\t\t\t{d.Fecha.ToShortDateString()}");
             }
         }
 
@@ -108,7 +108,7 @@ namespace DonactivaRD
                 return;
             }
 
-            var resultados = donaciones.Where(d => d.IdDonante == donante.Id).ToList();
+            var resultados = donaciones.Where(d => d.DonanteId == donante.Id).ToList();
 
             if (!resultados.Any())
             {
@@ -119,7 +119,7 @@ namespace DonactivaRD
             Console.WriteLine($"Donaciones realizadas por: {donante.Nombre}");
             foreach (var d in resultados)
             {
-                Console.WriteLine($"ID: {d.Id}, Tipo: {d.Tipo}, Monto/Descripción: {d.MontoDescripcion}, Fecha: {d.Fecha.ToShortDateString()}");
+                Console.WriteLine($"ID: {d.Id}, Tipo: {d.Tipo}, Monto/Descripción: {d.Descripcion}, Fecha: {d.Fecha.ToShortDateString()}");
             }
         }
 

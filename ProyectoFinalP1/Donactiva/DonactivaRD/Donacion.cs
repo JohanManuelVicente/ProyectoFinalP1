@@ -9,7 +9,7 @@ namespace DonactivaRD
     public class Donacion
     {
         public int Id { get; set; }
-        public string Tipo { get; set; } // Monetaria, Especie, Tiempo
+        public string Tipo { get; set; } // Monetaria, Especie o de Tiempo
         public string Descripcion { get; set; }
         public decimal Monto { get; set; }
         public DateTime Fecha { get; set; }

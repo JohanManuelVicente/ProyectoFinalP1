@@ -19,7 +19,7 @@ namespace DonactivaRD
                 Console.WriteLine("\n--- Menú Organizaciones ---");
                 Console.WriteLine("1. Agregar Organización");
                 Console.WriteLine("2. Editar Organización");
-                Console.WriteLine("3. Listar Organizaciones");
+                Console.WriteLine("3. Mostrar Organizaciones");
                 Console.WriteLine("4. Buscar Organización");
                 Console.WriteLine("5. Eliminar Organización");
                 Console.WriteLine("6. Volver al menú principal");

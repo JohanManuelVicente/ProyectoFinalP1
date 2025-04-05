@@ -20,7 +20,7 @@ namespace DonactivaRD
                 Console.WriteLine("\n--- Menú Donantes ---");
                 Console.WriteLine("1. Agregar Donante");
                 Console.WriteLine("2. Editar Donante");
-                Console.WriteLine("3. Listar Donantes");
+                Console.WriteLine("3. Mostrar Donantes");
                 Console.WriteLine("4. Buscar Donante");
                 Console.WriteLine("5. Eliminar Donante");
                 Console.WriteLine("6. Volver al menú principal");
