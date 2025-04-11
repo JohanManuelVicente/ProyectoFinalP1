@@ -67,6 +67,25 @@ namespace DonactivaRD
         {
             try
             {
+               
+                if (!donantes.Any())
+                {
+                    Console.WriteLine("No hay donantes registrados. Debe registrar al menos uno antes de continuar.");
+                    return;
+                }
+
+                if (!organizaciones.Any())
+                {
+                    Console.WriteLine("No hay organizaciones registradas. Debe registrar al menos una antes de continuar.");
+                    return;
+                }
+
+                if (!campañas.Any())
+                {
+                    Console.WriteLine("No hay campañas registradas. Debe registrar al menos una antes de continuar.");
+                    return;
+                }
+
                 Donacion nueva = new Donacion();
                 nueva.Id = donaciones.Count + 1;
 
@@ -112,10 +131,10 @@ namespace DonactivaRD
                 return;
             }
 
-            Console.WriteLine("\nID\tDonanteID\tOrganizacionID\tCampañaID\tTipo\t\tMonto/Descripción\tFecha");
+            Console.WriteLine();
             foreach (var d in donaciones)
-            {
-                Console.WriteLine($"{d.Id}\t{d.DonanteId}\t\t{d.OrganizacionId}\t\t{d.CampañaId}\t\t{d.Tipo}\t\t{d.Descripcion}\t\t\t{d.Fecha.ToShortDateString()}");
+            { 
+                Console.WriteLine($"ID: {d.Id}\tDonanteID: {d.DonanteId}\tOrganizacionID: {d.OrganizacionId}\tCampañaID: {d.CampañaId}\tTipo: {d.Tipo}\tMonto/Descripción: {d.Descripcion}\tFecha: {d.Fecha.ToShortDateString()}");
             }
         }
 
