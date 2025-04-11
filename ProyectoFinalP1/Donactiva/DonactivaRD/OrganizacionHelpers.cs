@@ -152,7 +152,7 @@ namespace DonactivaRD
             Console.WriteLine("ID\tNombre\t\tTipo\t\tRNC\t\tCorreo");
             foreach (var o in organizaciones)
             {
-                Console.WriteLine($"{o.Id}\t{o.Nombre}\t{o.Tipo}\t{o.RNC}\t{o.Correo}");
+                Console.WriteLine($"{o.Id}\t{o.Nombre}\t\t{o.Tipo}\t\t{o.RNC}\t\t{o.Correo}");
             }
         }
 
