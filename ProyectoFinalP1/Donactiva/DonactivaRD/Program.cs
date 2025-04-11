@@ -19,8 +19,8 @@ while (continuar)
         Console.WriteLine("========= MENÚ PRINCIPAL =========");
         Console.WriteLine("1. Gestionar Donantes");
         Console.WriteLine("2. Gestionar Organizaciones");
-        Console.WriteLine("3. Gestionar Donaciones");
-        Console.WriteLine("4. Gestionar Campañas");
+        Console.WriteLine("3. Gestionar Campañas");
+        Console.WriteLine("4. Gestionar Donaciones");
         Console.WriteLine("5. Salir");
         Console.WriteLine("==================================");
         Console.Write("Seleccione una opción: ");
@@ -55,22 +55,23 @@ while (continuar)
             case 3:
                 try
                 {
-                    DonacionHelper.MenuDonaciones(donaciones, donantes, organizaciones, campañas);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error al gestionar donaciones: {ex.Message}");
-                }
-                break;
-
-            case 4:
-                try
-                {
                     CampañaHelper.MenuCampañas(campañas);
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Error al gestionar campañas: {ex.Message}");
+                }
+                break;
+               
+
+            case 4:
+                try
+                {
+                    DonacionHelper.MenuDonaciones(donaciones, donantes, organizaciones, campañas);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al gestionar donaciones: {ex.Message}");
                 }
                 break;
 
