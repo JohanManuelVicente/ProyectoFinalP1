@@ -108,7 +108,7 @@ namespace DonactivaRD
                 Console.WriteLine("ID\tNombre\t\tFecha Inicio\tFecha Fin\tDescripción");
                 foreach (var c in campañas)
                 {
-                    Console.WriteLine($"{c.Id}\t{c.Nombre}\t\t{c.FechaInicio.ToShortDateString()}\t{c.FechaFin.ToShortDateString()}\t{c.Descripcion}");
+                    Console.WriteLine($"ID: {c.Id}\tNombre: {c.Nombre}\tFecha Inicio: {c.FechaInicio.ToShortDateString()}\tFecha Fin: {c.FechaFin.ToShortDateString()}\tDescripción: {c.Descripcion}");
                 }
             }
             catch (Exception ex)
