@@ -95,6 +95,8 @@ while (continuar)
 }
 
 Console.WriteLine("Gracias por usar DonactivaRD.");
+Console.WriteLine();
+
 
 
 
