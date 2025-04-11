@@ -14,12 +14,18 @@ while (continuar)
 {
     try
     {
-        Console.WriteLine("\nSeleccione una opción:");
+        Console.WriteLine("\nPresione ENTER para continuar al MENÚ PRINCIPAL");
+        Console.ReadLine();
+        Console.Clear();
+
+        Console.WriteLine("========= MENÚ PRINCIPAL =========");
         Console.WriteLine("1. Gestionar Donantes");
         Console.WriteLine("2. Gestionar Organizaciones");
         Console.WriteLine("3. Gestionar Donaciones");
         Console.WriteLine("4. Gestionar Campañas");
         Console.WriteLine("5. Salir");
+        Console.WriteLine("==================================");
+        Console.Write("Seleccione una opción: ");
 
         opcionSeleccionada = Convert.ToInt32(Console.ReadLine());
 
