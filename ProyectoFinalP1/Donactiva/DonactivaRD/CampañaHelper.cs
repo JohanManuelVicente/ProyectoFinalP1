@@ -105,10 +105,10 @@ namespace DonactivaRD
                     return;
                 }
 
-                Console.WriteLine("ID\tNombre\t\tFecha Inicio\tFecha Fin\tDescripción");
+                Console.WriteLine();
                 foreach (var c in campañas)
                 {
-                    Console.WriteLine($"ID: {c.Id}\tNombre: {c.Nombre}\tFecha Inicio: {c.FechaInicio.ToShortDateString()}\tFecha Fin: {c.FechaFin.ToShortDateString()}\tDescripción: {c.Descripcion}");
+                    Console.WriteLine($"ID: {c.Id}\tNombre: {c.Nombre}\tFecha Inicio: {c.FechaInicio.ToShortDateString()}\tFecha Fin: {c.FechaFin.ToShortDateString()}\t\tDescripción: {c.Descripcion}");
                 }
             }
             catch (Exception ex)
