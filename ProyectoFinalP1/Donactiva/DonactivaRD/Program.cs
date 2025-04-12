@@ -70,7 +70,7 @@ while (continuar)
             case 4:
                 try
                 {
-                    DonacionHelper.MenuDonaciones(donaciones, donantes, organizaciones, campañas);
+                    DonacionHelper.MenuDonaciones( donantes, organizaciones, campañas);
                 }
                 catch (Exception ex)
                 {

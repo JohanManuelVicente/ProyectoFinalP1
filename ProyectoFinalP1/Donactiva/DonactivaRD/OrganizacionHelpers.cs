@@ -101,6 +101,8 @@ namespace DonactivaRD
                 nueva.Correo = Console.ReadLine();
 
                 organizaciones.Add(nueva);
+                context.SaveChanges();
+
                 Console.WriteLine("Organización registrada exitosamente.");
             }
             catch (Exception ex)

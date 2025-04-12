@@ -88,7 +88,9 @@ namespace DonactivaRD
                 Console.WriteLine("Fecha de finalización de la campaña (YYYY-MM-DD):");
                 nueva.FechaFin = DateTime.Parse(Console.ReadLine());
 
-                campañas.Add(nueva);
+                context.Campaña.Add(nueva);
+
+                context.SaveChanges();
                 Console.WriteLine("Campaña registrada exitosamente.");
             }
             catch (FormatException)

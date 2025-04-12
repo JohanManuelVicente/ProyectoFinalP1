@@ -118,6 +118,7 @@ namespace DonactivaRD
                 nueva.Fecha = DateTime.Parse(Console.ReadLine());
 
                 donaciones.Add(nueva);
+                context.SaveChanges();
                 Console.WriteLine("Donación registrada exitosamente.");
             }
             catch (FormatException)

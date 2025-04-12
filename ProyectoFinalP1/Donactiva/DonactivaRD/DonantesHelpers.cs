@@ -99,6 +99,8 @@ namespace DonactivaRD
                 nuevo.Tipo = Console.ReadLine();
 
                 context.Donante.Add(nuevo);
+
+                context.SaveChanges();  
                 Console.WriteLine("Donante agregado exitosamente.");
             }
             catch (Exception ex)
@@ -139,6 +141,10 @@ namespace DonactivaRD
 
                 Console.WriteLine("Editar Tipo de Donante:");
                 donante.Tipo = Console.ReadLine();
+
+                context.Donante.Update(donante);
+
+                context.SaveChanges();
 
                 Console.WriteLine("Donante editado exitosamente.");
             }
@@ -210,6 +216,8 @@ namespace DonactivaRD
                 }
 
                 context.Donante.Remove(donante);
+                context.SaveChanges();
+
                 Console.WriteLine("Donante eliminado correctamente.");
             }
             catch (Exception ex)
