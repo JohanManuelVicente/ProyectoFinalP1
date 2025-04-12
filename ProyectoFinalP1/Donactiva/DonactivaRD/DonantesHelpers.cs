@@ -194,6 +194,8 @@ namespace DonactivaRD
                 {
                     Console.WriteLine($"ID: {d.Id}, Nombre: {d.Nombre}, Cédula: {d.Cedula}, Tipo: {d.Tipo}");
                 }
+                
+                context.SaveChanges();
             }
             catch (Exception ex)
             {

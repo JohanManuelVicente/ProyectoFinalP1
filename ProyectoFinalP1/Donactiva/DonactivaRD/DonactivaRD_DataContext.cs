@@ -17,8 +17,9 @@ namespace DonactivaRD
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=VICENTE\\SQLEXPRESS;Database=DonactivaRD;Trusted_Connection=True;MulptipleActiveResultSets=true;TrustServerCertificate=true");
-            base.OnConfiguring(optionsBuilder);
+            
+            optionsBuilder.UseSqlServer("Server=VICENTE\\SQLEXPRESS;Database=DonactivaRD;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true");
+            
         }
     }
 }
