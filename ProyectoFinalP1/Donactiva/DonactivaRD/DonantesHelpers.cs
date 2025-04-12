@@ -8,7 +8,7 @@ namespace DonactivaRD
 {
     public static class DonanteHelper
     {
-        public static void MenuDonantes(List<Donante> donantes)
+        public static void MenuDonantes()
         {
             int opcion = 0;
             bool continuar = true;
@@ -17,6 +17,8 @@ namespace DonactivaRD
             {
                 try
                 {
+                    var context = new DonactivaRD_DataContext();
+                    var donantes = context.Donante.ToList();
                     Console.WriteLine("\n--- Menú Donantes ---");
                     Console.WriteLine("1. Agregar Donante");
                     Console.WriteLine("2. Editar Donante");
@@ -30,12 +32,12 @@ namespace DonactivaRD
                     switch (opcion)
                     {
                         case 1:
-                            AgregarDonante(donantes);
+                            AgregarDonante();
                             break;
                         case 2:
                             Console.WriteLine("Ingrese el ID del donante a editar:");
                             int idEditar = Convert.ToInt32(Console.ReadLine());
-                            EditarDonante(donantes, idEditar);
+                            EditarDonante(idEditar);
                             break;
                         case 3:
                             ListarDonantes(donantes);
@@ -69,12 +71,14 @@ namespace DonactivaRD
             }
         }
 
-        public static void AgregarDonante(List<Donante> donantes)
+        public static void AgregarDonante()
         {
             try
             {
+                var context = new DonactivaRD_DataContext();
+
                 Donante nuevo = new Donante();
-                nuevo.Id = donantes.Count + 1;
+                nuevo.Id = context.Donante.Count();
 
                 Console.WriteLine("Nombre completo:");
                 nuevo.Nombre = Console.ReadLine();
@@ -94,7 +98,7 @@ namespace DonactivaRD
                 Console.WriteLine("Tipo de donante (Individual o Empresa):");
                 nuevo.Tipo = Console.ReadLine();
 
-                donantes.Add(nuevo);
+                context.Donante.Add(nuevo);
                 Console.WriteLine("Donante agregado exitosamente.");
             }
             catch (Exception ex)
@@ -103,11 +107,14 @@ namespace DonactivaRD
             }
         }
 
-        public static void EditarDonante(List<Donante> donantes, int id)
+        public static void EditarDonante(int id)
         {
             try
             {
-                var donante = donantes.FirstOrDefault(d => d.Id == id);
+                var context = new DonactivaRD_DataContext();
+                Donante nuevo = new Donante();
+
+                var donante = context.Donante.FirstOrDefault(d => d.Id == id);
 
                 if (donante == null)
                 {

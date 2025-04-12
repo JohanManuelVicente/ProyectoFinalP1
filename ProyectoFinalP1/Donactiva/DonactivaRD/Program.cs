@@ -1,12 +1,15 @@
 ﻿using DonactivaRD;
 
-List<Donante> donantes = new List<Donante>();
-List<Organizacion> organizaciones = new List<Organizacion>();
-List<Donacion> donaciones = new List<Donacion>();
-List<Campaña> campañas = new List<Campaña>();
-
 bool continuar = true;
 int opcionSeleccionada = 0;
+var context = new DonactivaRD_DataContext();
+
+List<Donante> donantes = context.Donante.ToList();
+List<Organizacion> organizaciones = context.Organizacion.ToList();
+List<Campaña> campañas = context.Campaña.ToList();
+List<Donacion> donaciones = context.Donacion.ToList();
+
+
 
 Console.WriteLine("Bienvenido a DonactivaRD - Sistema de Gestión de Donaciones");
 
@@ -33,7 +36,7 @@ while (continuar)
             case 1:
                 try
                 {
-                    DonanteHelper.MenuDonantes(donantes);
+                    DonanteHelper.MenuDonantes();
                 }
                 catch (Exception ex)
                 {
