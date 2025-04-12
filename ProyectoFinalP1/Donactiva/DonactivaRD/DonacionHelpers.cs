@@ -8,8 +8,12 @@ namespace DonactivaRD
 {
     public static class DonacionHelper
     {
-        public static void MenuDonaciones(List<Donacion> donaciones, List<Donante> donantes, List<Organizacion> organizaciones, List<Campaña> campañas)
+        public static void MenuDonaciones( List<Donante> donantes, List<Organizacion> organizaciones, List<Campaña> campañas)
         {
+            var context = new DonactivaRD_DataContext();
+            var donaciones = context.Donacion.ToList();
+
+       
             int opcion = 0;
             bool continuar = true;
 
@@ -29,20 +33,20 @@ namespace DonactivaRD
                     switch (opcion)
                     {
                         case 1:
-                            RegistrarDonacion(donaciones, donantes, organizaciones, campañas);
+                            RegistrarDonacion( donantes, organizaciones, campañas);
                             break;
                         case 2:
-                            ListarDonaciones(donaciones);
+                            ListarDonaciones();
                             break;
                         case 3:
                             Console.WriteLine("Ingrese nombre o cédula del donante:");
                             string criterio = Console.ReadLine();
-                            BuscarDonacionesPorDonante(donaciones, donantes, criterio);
+                            BuscarDonacionesPorDonante( donantes, criterio);
                             break;
                         case 4:
                             Console.WriteLine("Ingrese el ID de la donación a eliminar:");
                             int idEliminar = Convert.ToInt32(Console.ReadLine());
-                            EliminarDonacion(donaciones, idEliminar);
+                            EliminarDonacion( idEliminar);
                             break;
                         case 5:
                             continuar = false;
@@ -63,8 +67,11 @@ namespace DonactivaRD
             }
         }
 
-        public static void RegistrarDonacion(List<Donacion> donaciones, List<Donante> donantes, List<Organizacion> organizaciones, List<Campaña> campañas)
+        public static void RegistrarDonacion( List<Donante> donantes, List<Organizacion> organizaciones, List<Campaña> campañas)
         {
+            var context = new DonactivaRD_DataContext();
+            var donaciones = context.Donacion.ToList();
+
             try
             {
                
@@ -87,18 +94,18 @@ namespace DonactivaRD
                 }
 
                 Donacion nueva = new Donacion();
-                nueva.Id = donaciones.Count + 1;
+                nueva.Id = donaciones.Count();
 
                 Console.WriteLine("Ingrese el ID del Donante:");
-                DonanteHelper.ListarDonantes(donantes);
+                DonanteHelper.ListarDonantes();
                 nueva.DonanteId = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("Ingrese el ID de la Organización receptora:");
-                OrganizacionHelper.ListarOrganizaciones(organizaciones);
+                OrganizacionHelper.ListarOrganizaciones();
                 nueva.OrganizacionId = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("Ingrese el ID de la Campaña asociada:");
-                CampañaHelper.ListarCampañas(campañas);
+                CampañaHelper.ListarCampañas();
                 nueva.CampañaId = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("Ingrese el tipo de donación (dinero, alimento, etc.):");
@@ -123,8 +130,11 @@ namespace DonactivaRD
             }
         }
 
-        public static void ListarDonaciones(List<Donacion> donaciones)
+        public static void ListarDonaciones()
         {
+            var context = new DonactivaRD_DataContext();
+            var donaciones = context.Donacion.ToList();
+
             if (!donaciones.Any())
             {
                 Console.WriteLine("No hay donaciones registradas.");
@@ -138,8 +148,11 @@ namespace DonactivaRD
             }
         }
 
-        public static void BuscarDonacionesPorDonante(List<Donacion> donaciones, List<Donante> donantes, string criterio)
+        public static void BuscarDonacionesPorDonante( List<Donante> donantes, string criterio)
         {
+            var context = new DonactivaRD_DataContext();
+            var donaciones = context.Donacion.ToList();
+
             try
             {
                 var donante = donantes.FirstOrDefault(d => d.Nombre.Contains(criterio, StringComparison.OrdinalIgnoreCase)
@@ -171,8 +184,11 @@ namespace DonactivaRD
             }
         }
 
-        public static void EliminarDonacion(List<Donacion> donaciones, int id)
+        public static void EliminarDonacion( int id)
         {
+            var context = new DonactivaRD_DataContext();
+            var donaciones = context.Donacion.ToList();
+
             try
             {
                 var donacion = donaciones.FirstOrDefault(d => d.Id == id);
