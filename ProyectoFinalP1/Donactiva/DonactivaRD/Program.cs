@@ -47,7 +47,7 @@ while (continuar)
             case 2:
                 try
                 {
-                    OrganizacionHelper.MenuOrganizaciones(organizaciones);
+                    OrganizacionHelper.MenuOrganizaciones();
                 }
                 catch (Exception ex)
                 {
@@ -58,7 +58,7 @@ while (continuar)
             case 3:
                 try
                 {
-                    CampañaHelper.MenuCampañas(campañas);
+                    CampañaHelper.MenuCampañas();
                 }
                 catch (Exception ex)
                 {

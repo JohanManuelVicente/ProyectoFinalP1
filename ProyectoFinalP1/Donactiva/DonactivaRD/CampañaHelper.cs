@@ -8,8 +8,11 @@ namespace DonactivaRD
 {
     public static class CampañaHelper
     {
-        public static void MenuCampañas(List<Campaña> campañas)
+        public static void MenuCampañas()
         {
+            var context = new DonactivaRD_DataContext();
+            var campañas = context.Campaña.ToList();
+
             int opcion = 0;
             bool continuar = true;
 
@@ -29,20 +32,20 @@ namespace DonactivaRD
                     switch (opcion)
                     {
                         case 1:
-                            RegistrarCampaña(campañas);
+                            RegistrarCampaña();
                             break;
                         case 2:
-                            ListarCampañas(campañas);
+                            ListarCampañas();
                             break;
                         case 3:
                             Console.WriteLine("Ingrese el nombre de la campaña:");
                             string criterio = Console.ReadLine();
-                            BuscarCampaña(campañas, criterio);
+                            BuscarCampaña( criterio);
                             break;
                         case 4:
                             Console.WriteLine("Ingrese el ID de la campaña a eliminar:");
                             int idEliminar = Convert.ToInt32(Console.ReadLine());
-                            EliminarCampaña(campañas, idEliminar);
+                            EliminarCampaña( idEliminar);
                             break;
                         case 5:
                             continuar = false;
@@ -63,12 +66,15 @@ namespace DonactivaRD
             }
         }
 
-        public static void RegistrarCampaña(List<Campaña> campañas)
+        public static void RegistrarCampaña()
         {
+            var context = new DonactivaRD_DataContext();
+            var campañas = context.Campaña.ToList();
+
             try
             {
                 Campaña nueva = new Campaña();
-                nueva.Id = campañas.Count + 1;
+                nueva.Id = campañas.Count();
 
                 Console.WriteLine("Ingrese el nombre de la campaña:");
                 nueva.Nombre = Console.ReadLine();
@@ -95,8 +101,11 @@ namespace DonactivaRD
             }
         }
 
-        public static void ListarCampañas(List<Campaña> campañas)
+        public static void ListarCampañas()
         {
+            var context = new DonactivaRD_DataContext();
+            var campañas = context.Campaña.ToList();
+
             try
             {
                 if (!campañas.Any())
@@ -117,8 +126,11 @@ namespace DonactivaRD
             }
         }
 
-        public static void BuscarCampaña(List<Campaña> campañas, string nombre)
+        public static void BuscarCampaña( string nombre)
         {
+            var context = new DonactivaRD_DataContext();
+            var campañas = context.Campaña.ToList();
+
             try
             {
                 var resultados = campañas.Where(c => c.Nombre.Contains(nombre, StringComparison.OrdinalIgnoreCase)).ToList();
@@ -141,8 +153,10 @@ namespace DonactivaRD
             }
         }
 
-        public static void EliminarCampaña(List<Campaña> campañas, int id)
+        public static void EliminarCampaña( int id)
         {
+            var context = new DonactivaRD_DataContext();
+            var campañas = context.Campaña.ToList();
             try
             {
                 var campaña = campañas.FirstOrDefault(c => c.Id == id);

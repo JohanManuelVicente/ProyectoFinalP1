@@ -8,7 +8,7 @@ namespace DonactivaRD
 {
     public static class OrganizacionHelper
     {
-        public static void MenuOrganizaciones(List<Organizacion> organizaciones)
+        public static void MenuOrganizaciones()
         {
             int opcion = 0;
             bool continuar = true;
@@ -17,6 +17,9 @@ namespace DonactivaRD
             {
                 try
                 {
+                    var context = new DonactivaRD_DataContext();
+                    var organizaciones = context.Organizacion.ToList();
+
                     Console.WriteLine("\n--- Menú Organizaciones ---");
                     Console.WriteLine("1. Agregar Organización");
                     Console.WriteLine("2. Editar Organización");
@@ -30,25 +33,25 @@ namespace DonactivaRD
                     switch (opcion)
                     {
                         case 1:
-                            AgregarOrganizacion(organizaciones);
+                            AgregarOrganizacion();
                             break;
                         case 2:
                             Console.WriteLine("Ingrese el ID de la organización a editar:");
                             int idEditar = Convert.ToInt32(Console.ReadLine());
-                            EditarOrganizacion(organizaciones, idEditar);
+                            EditarOrganizacion(idEditar);
                             break;
                         case 3:
-                            ListarOrganizaciones(organizaciones);
+                            ListarOrganizaciones();
                             break;
                         case 4:
                             Console.WriteLine("Ingrese el nombre o RNC para buscar:");
                             string criterio = Console.ReadLine();
-                            BuscarOrganizacion(organizaciones, criterio);
+                            BuscarOrganizacion( criterio);
                             break;
                         case 5:
                             Console.WriteLine("Ingrese el ID de la organización a eliminar:");
                             int idEliminar = Convert.ToInt32(Console.ReadLine());
-                            EliminarOrganizacion(organizaciones, idEliminar);
+                            EliminarOrganizacion(idEliminar);
                             break;
                         case 6:
                             continuar = false;
@@ -69,12 +72,15 @@ namespace DonactivaRD
             }
         }
 
-        public static void AgregarOrganizacion(List<Organizacion> organizaciones)
+        public static void AgregarOrganizacion()
         {
             try
             {
+                var context = new DonactivaRD_DataContext();
+                var organizaciones = context.Organizacion.ToList();
+
                 Organizacion nueva = new Organizacion();
-                nueva.Id = organizaciones.Count + 1;
+                nueva.Id = organizaciones.Count ();
 
                 Console.WriteLine("Nombre de la organización:");
                 nueva.Nombre = Console.ReadLine();
@@ -103,8 +109,11 @@ namespace DonactivaRD
             }
         }
 
-        public static void EditarOrganizacion(List<Organizacion> organizaciones, int id)
+        public static void EditarOrganizacion(int id)
         {
+            var context = new DonactivaRD_DataContext();
+            var organizaciones = context.Organizacion.ToList();
+
             try
             {
                 var organizacion = organizaciones.FirstOrDefault(o => o.Id == id);
@@ -141,8 +150,10 @@ namespace DonactivaRD
             }
         }
 
-        public static void ListarOrganizaciones(List<Organizacion> organizaciones)
+        public static void ListarOrganizaciones()
         {
+            var context = new DonactivaRD_DataContext();
+            var organizaciones = context.Organizacion.ToList();
             if (!organizaciones.Any())
             {
                 Console.WriteLine("No hay organizaciones registradas.");
@@ -156,8 +167,11 @@ namespace DonactivaRD
             }
         }
 
-        public static void BuscarOrganizacion(List<Organizacion> organizaciones, string criterio)
+        public static void BuscarOrganizacion( string criterio)
         {
+            var context = new DonactivaRD_DataContext();
+            var organizaciones = context.Organizacion.ToList();
+
             try
             {
                 var resultados = organizaciones
@@ -183,8 +197,10 @@ namespace DonactivaRD
             }
         }
 
-        public static void EliminarOrganizacion(List<Organizacion> organizaciones, int id)
+        public static void EliminarOrganizacion(int id)
         {
+            var context = new DonactivaRD_DataContext();
+            var organizaciones = context.Organizacion.ToList();
             try
             {
                 var organizacion = organizaciones.FirstOrDefault(o => o.Id == id);

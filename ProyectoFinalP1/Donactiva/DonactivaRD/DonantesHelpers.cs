@@ -40,17 +40,17 @@ namespace DonactivaRD
                             EditarDonante(idEditar);
                             break;
                         case 3:
-                            ListarDonantes(donantes);
+                            ListarDonantes();
                             break;
                         case 4:
                             Console.WriteLine("Ingrese un nombre o cédula para buscar:");
                             string criterio = Console.ReadLine();
-                            BuscarDonante(donantes, criterio);
+                            BuscarDonante( criterio);
                             break;
                         case 5:
                             Console.WriteLine("Ingrese el ID del donante a eliminar:");
                             int idEliminar = Convert.ToInt32(Console.ReadLine());
-                            EliminarDonante(donantes, idEliminar);
+                            EliminarDonante( idEliminar);
                             break;
                         case 6:
                             continuar = false;
@@ -148,26 +148,31 @@ namespace DonactivaRD
             }
         }
 
-        public static void ListarDonantes(List<Donante> donantes)
+        public static void ListarDonantes()
         {
-            if (!donantes.Any())
+            var context = new DonactivaRD_DataContext();
+            Donante nuevo = new Donante();
+            if (!context.Donante.Any())
             {
                 Console.WriteLine("No hay donantes registrados.");
                 return;
             }
 
             Console.WriteLine();
-            foreach (var d in donantes)
+            foreach (var d in context.Donante)
             {
                 Console.WriteLine($"ID: {d.Id}\tNombre: {d.Nombre}\tCorreo: {d.Correo}\tTeléfono: {d.Telefono}\tTipo: {d.Tipo}");
             }
         }
 
-        public static void BuscarDonante(List<Donante> donantes, string criterio)
+        public static void BuscarDonante(string criterio)
         {
             try
             {
-                var resultados = donantes
+                var context = new DonactivaRD_DataContext();
+                Donante nuevo = new Donante();
+
+                var resultados = context.Donante
                     .Where(d => d.Nombre.Contains(criterio, StringComparison.OrdinalIgnoreCase)
                              || d.Cedula.Contains(criterio))
                     .ToList();
@@ -190,11 +195,13 @@ namespace DonactivaRD
             }
         }
 
-        public static void EliminarDonante(List<Donante> donantes, int id)
+        public static void EliminarDonante(int id)
         {
             try
             {
-                var donante = donantes.FirstOrDefault(d => d.Id == id);
+                var context = new DonactivaRD_DataContext();
+                Donante nuevo = new Donante();
+                var donante = context.Donante.FirstOrDefault(d => d.Id == id);
 
                 if (donante == null)
                 {
@@ -202,7 +209,7 @@ namespace DonactivaRD
                     return;
                 }
 
-                donantes.Remove(donante);
+                context.Donante.Remove(donante);
                 Console.WriteLine("Donante eliminado correctamente.");
             }
             catch (Exception ex)
