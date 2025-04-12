@@ -159,6 +159,7 @@ namespace DonactivaRD
         {
             var context = new DonactivaRD_DataContext();
             Donante nuevo = new Donante();
+            
             if (!context.Organizacion.Any())
             {
                 Console.WriteLine("No hay organizaciones registradas.");
@@ -175,11 +176,14 @@ namespace DonactivaRD
         public static void BuscarOrganizacion( string criterio)
         {
             var context = new DonactivaRD_DataContext();
-            Donante nuevo = new Donante();
+         
+            
 
             try
             {
-                var resultados = context.Organizacion
+                var organizaciones = context.Organizacion.ToList();
+
+                var resultados = organizaciones
                     .Where(o => o.Nombre.Contains(criterio, StringComparison.OrdinalIgnoreCase)
                              || o.RNC.Contains(criterio))
                     .ToList();
@@ -195,7 +199,7 @@ namespace DonactivaRD
                 {
                     Console.WriteLine($"ID: {o.Id}, Nombre: {o.Nombre}, RNC: {o.RNC}");
                 }
-                context.SaveChanges();
+               
             }
             catch (Exception ex)
             {

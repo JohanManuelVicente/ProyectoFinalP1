@@ -13,13 +13,13 @@ namespace DonactivaRD
       
         public string Nombre { get; set; }
         [MaxLength(100)]
-        public string Correo { get; set; }
+        public string? Correo { get; set; }
         [MaxLength(150)]
-        public string Telefono { get; set; }
+        public string? Telefono { get; set; }
         [MaxLength(100)]
         public string Cedula { get; set; }
         [MaxLength(150)]
-        public string Direccion { get; set; }
+        public string? Direccion { get; set; }
         [MaxLength(150)]
         public string Tipo { get; set; } // Individual o Empresa
         

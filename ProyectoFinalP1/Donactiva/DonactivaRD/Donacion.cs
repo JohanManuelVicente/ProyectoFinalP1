@@ -14,9 +14,9 @@ namespace DonactivaRD
         public int Id { get; set; }
         public string Tipo { get; set; } // Monetaria, Especie o de Tiempo
         [MaxLength(50)]
-        public string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
         [MaxLength(100)]
-        public decimal Monto { get; set; }
+        public decimal? Monto { get; set; }
         
         public DateTime Fecha { get; set; }
         public int DonanteId { get; set; }

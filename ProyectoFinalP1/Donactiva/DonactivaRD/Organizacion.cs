@@ -13,14 +13,14 @@ namespace DonactivaRD
 
         public string Nombre { get; set; }
         [MaxLength(100)]
-        public string Tipo { get; set; }
+        public string? Tipo { get; set; }
         [MaxLength(100)]
-        public string RNC { get; set; }
+        public string? RNC { get; set; }
         [MaxLength(200)]
-        public string Direccion { get; set; }
+        public string? Direccion { get; set; }
         [MaxLength(150)]
-        public string Contacto { get; set; }
+        public string? Contacto { get; set; }
      
-        public string Correo { get; set; }
+        public string? Correo { get; set; }
     }
 }

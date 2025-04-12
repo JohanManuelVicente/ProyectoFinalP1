@@ -173,12 +173,15 @@ namespace DonactivaRD
 
         public static void BuscarDonante(string criterio)
         {
+            var context = new DonactivaRD_DataContext();
+            
             try
             {
-                var context = new DonactivaRD_DataContext();
-                Donante nuevo = new Donante();
+              
 
-                var resultados = context.Donante
+                var donantes = context.Donante.ToList();
+
+                var resultados = donantes
                     .Where(d => d.Nombre.Contains(criterio, StringComparison.OrdinalIgnoreCase)
                              || d.Cedula.Contains(criterio))
                     .ToList();
@@ -195,7 +198,7 @@ namespace DonactivaRD
                     Console.WriteLine($"ID: {d.Id}, Nombre: {d.Nombre}, Cédula: {d.Cedula}, Tipo: {d.Tipo}");
                 }
                 
-               context.SaveChanges();
+              
             }
             catch (Exception ex)
             {

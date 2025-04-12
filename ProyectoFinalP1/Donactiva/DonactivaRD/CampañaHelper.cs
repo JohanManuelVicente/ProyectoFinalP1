@@ -131,11 +131,13 @@ namespace DonactivaRD
         public static void BuscarCampaña( string nombre)
         {
             var context = new DonactivaRD_DataContext();
-            Campaña nueva = new Campaña();
-
+           
+            
             try
             {
-                var resultados = context.Campaña.Where(c => c.Nombre.Contains(nombre, StringComparison.OrdinalIgnoreCase)).ToList();
+                var campañas = context.Campaña.ToList();
+
+                var resultados = campañas.Where(c => c.Nombre.Contains(nombre, StringComparison.OrdinalIgnoreCase)).ToList();
 
                 if (!resultados.Any())
                 {
@@ -149,7 +151,7 @@ namespace DonactivaRD
                     Console.WriteLine($"{c.Id}\t{c.Nombre}\t\t{c.FechaInicio.ToShortDateString()}\t{c.FechaFin.ToShortDateString()}\t{c.Descripcion}");
                 }
 
-                context.SaveChanges();
+               
             }
             catch (Exception ex)
             {
