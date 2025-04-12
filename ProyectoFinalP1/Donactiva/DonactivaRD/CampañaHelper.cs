@@ -69,12 +69,12 @@ namespace DonactivaRD
         public static void RegistrarCampaña()
         {
             var context = new DonactivaRD_DataContext();
-            var campañas = context.Campaña.ToList();
 
+            Campaña nueva = new Campaña();
             try
             {
-                Campaña nueva = new Campaña();
-                nueva.Id = campañas.Count();
+                
+               
 
                 Console.WriteLine("Ingrese el nombre de la campaña:");
                 nueva.Nombre = Console.ReadLine();
@@ -106,18 +106,18 @@ namespace DonactivaRD
         public static void ListarCampañas()
         {
             var context = new DonactivaRD_DataContext();
-            var campañas = context.Campaña.ToList();
+            Campaña nueva = new Campaña();
 
             try
             {
-                if (!campañas.Any())
+                if (!context.Campaña.Any())
                 {
                     Console.WriteLine("No hay campañas registradas.");
                     return;
                 }
 
                 Console.WriteLine();
-                foreach (var c in campañas)
+                foreach (var c in context.Campaña)
                 {
                     Console.WriteLine($"ID: {c.Id}\tNombre: {c.Nombre}\tFecha Inicio: {c.FechaInicio.ToShortDateString()}\tFecha Fin: {c.FechaFin.ToShortDateString()}\t\tDescripción: {c.Descripcion}");
                 }
@@ -131,11 +131,11 @@ namespace DonactivaRD
         public static void BuscarCampaña( string nombre)
         {
             var context = new DonactivaRD_DataContext();
-            var campañas = context.Campaña.ToList();
+            Campaña nueva = new Campaña();
 
             try
             {
-                var resultados = campañas.Where(c => c.Nombre.Contains(nombre, StringComparison.OrdinalIgnoreCase)).ToList();
+                var resultados = context.Campaña.Where(c => c.Nombre.Contains(nombre, StringComparison.OrdinalIgnoreCase)).ToList();
 
                 if (!resultados.Any())
                 {
@@ -148,6 +148,8 @@ namespace DonactivaRD
                 {
                     Console.WriteLine($"{c.Id}\t{c.Nombre}\t\t{c.FechaInicio.ToShortDateString()}\t{c.FechaFin.ToShortDateString()}\t{c.Descripcion}");
                 }
+
+                context.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -158,10 +160,10 @@ namespace DonactivaRD
         public static void EliminarCampaña( int id)
         {
             var context = new DonactivaRD_DataContext();
-            var campañas = context.Campaña.ToList();
+            Campaña nueva = new Campaña();
             try
             {
-                var campaña = campañas.FirstOrDefault(c => c.Id == id);
+                var campaña = context.Campaña.FirstOrDefault(c => c.Id == id);
 
                 if (campaña == null)
                 {
@@ -169,7 +171,8 @@ namespace DonactivaRD
                     return;
                 }
 
-                campañas.Remove(campaña);
+                context.Campaña.Remove(campaña);
+                context.SaveChanges();
                 Console.WriteLine("Campaña eliminada correctamente.");
             }
             catch (Exception ex)

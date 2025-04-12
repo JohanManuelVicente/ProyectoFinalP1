@@ -77,10 +77,9 @@ namespace DonactivaRD
             try
             {
                 var context = new DonactivaRD_DataContext();
-                var organizaciones = context.Organizacion.ToList();
-
+                
                 Organizacion nueva = new Organizacion();
-                nueva.Id = organizaciones.Count ();
+                
 
                 Console.WriteLine("Nombre de la organización:");
                 nueva.Nombre = Console.ReadLine();
@@ -100,7 +99,7 @@ namespace DonactivaRD
                 Console.WriteLine("Correo electrónico:");
                 nueva.Correo = Console.ReadLine();
 
-                organizaciones.Add(nueva);
+                context.Organizacion.Add(nueva);
                 context.SaveChanges();
 
                 Console.WriteLine("Organización registrada exitosamente.");
@@ -114,11 +113,11 @@ namespace DonactivaRD
         public static void EditarOrganizacion(int id)
         {
             var context = new DonactivaRD_DataContext();
-            var organizaciones = context.Organizacion.ToList();
+            Donante nuevo = new Donante();
 
             try
             {
-                var organizacion = organizaciones.FirstOrDefault(o => o.Id == id);
+                var organizacion = context.Organizacion.FirstOrDefault(o => o.Id == id);
 
                 if (organizacion == null)
                 {
@@ -144,6 +143,10 @@ namespace DonactivaRD
                 Console.WriteLine("Editar correo:");
                 organizacion.Correo = Console.ReadLine();
 
+                context.Organizacion.Update(organizacion);
+
+                context.SaveChanges();
+
                 Console.WriteLine("Organización actualizada correctamente.");
             }
             catch (Exception ex)
@@ -155,15 +158,15 @@ namespace DonactivaRD
         public static void ListarOrganizaciones()
         {
             var context = new DonactivaRD_DataContext();
-            var organizaciones = context.Organizacion.ToList();
-            if (!organizaciones.Any())
+            Donante nuevo = new Donante();
+            if (!context.Organizacion.Any())
             {
                 Console.WriteLine("No hay organizaciones registradas.");
                 return;
             }
 
             Console.WriteLine();
-            foreach (var o in organizaciones)
+            foreach (var o in context.Organizacion)
             {
                 Console.WriteLine($"ID:{o.Id}  Nombre: {o.Nombre}    Tipo: {o.Tipo}    RNC: {o.RNC}   Correo:{o.Correo}");
             }
@@ -172,11 +175,11 @@ namespace DonactivaRD
         public static void BuscarOrganizacion( string criterio)
         {
             var context = new DonactivaRD_DataContext();
-            var organizaciones = context.Organizacion.ToList();
+            Donante nuevo = new Donante();
 
             try
             {
-                var resultados = organizaciones
+                var resultados = context.Organizacion
                     .Where(o => o.Nombre.Contains(criterio, StringComparison.OrdinalIgnoreCase)
                              || o.RNC.Contains(criterio))
                     .ToList();
@@ -192,6 +195,7 @@ namespace DonactivaRD
                 {
                     Console.WriteLine($"ID: {o.Id}, Nombre: {o.Nombre}, RNC: {o.RNC}");
                 }
+                context.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -202,10 +206,10 @@ namespace DonactivaRD
         public static void EliminarOrganizacion(int id)
         {
             var context = new DonactivaRD_DataContext();
-            var organizaciones = context.Organizacion.ToList();
+            Donante nuevo = new Donante();
             try
             {
-                var organizacion = organizaciones.FirstOrDefault(o => o.Id == id);
+                var organizacion = context.Organizacion.FirstOrDefault(o => o.Id == id);
 
                 if (organizacion == null)
                 {
@@ -213,7 +217,8 @@ namespace DonactivaRD
                     return;
                 }
 
-                organizaciones.Remove(organizacion);
+                context.Organizacion.Remove(organizacion);
+                context.SaveChanges();
                 Console.WriteLine("Organización eliminada correctamente.");
             }
             catch (Exception ex)

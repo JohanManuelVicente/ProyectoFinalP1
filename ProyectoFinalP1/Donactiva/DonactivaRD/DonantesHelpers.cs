@@ -78,7 +78,7 @@ namespace DonactivaRD
                 var context = new DonactivaRD_DataContext();
 
                 Donante nuevo = new Donante();
-                nuevo.Id = context.Donante.Count();
+                
 
                 Console.WriteLine("Nombre completo:");
                 nuevo.Nombre = Console.ReadLine();
@@ -195,7 +195,7 @@ namespace DonactivaRD
                     Console.WriteLine($"ID: {d.Id}, Nombre: {d.Nombre}, Cédula: {d.Cedula}, Tipo: {d.Tipo}");
                 }
                 
-                context.SaveChanges();
+               context.SaveChanges();
             }
             catch (Exception ex)
             {

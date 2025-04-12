@@ -16,9 +16,9 @@ namespace DonactivaRD
         public string Correo { get; set; }
         [MaxLength(150)]
         public string Telefono { get; set; }
-        [MaxLength(20)]
+        [MaxLength(100)]
         public string Cedula { get; set; }
-        [MaxLength(15)]
+        [MaxLength(150)]
         public string Direccion { get; set; }
         [MaxLength(150)]
         public string Tipo { get; set; } // Individual o Empresa

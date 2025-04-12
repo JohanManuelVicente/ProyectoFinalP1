@@ -16,7 +16,7 @@ namespace DonactivaRD
         public string Tipo { get; set; }
         [MaxLength(100)]
         public string RNC { get; set; }
-        [MaxLength(20)]
+        [MaxLength(200)]
         public string Direccion { get; set; }
         [MaxLength(150)]
         public string Contacto { get; set; }
