@@ -10,6 +10,9 @@ namespace DonactivaRD
     {
         public static void MenuDonantes()
         {
+            var context = new DonactivaRD_DataContext();
+            var donantes = context.Donante.ToList();
+
             int opcion = 0;
             bool continuar = true;
 
@@ -17,8 +20,7 @@ namespace DonactivaRD
             {
                 try
                 {
-                    var context = new DonactivaRD_DataContext();
-                    var donantes = context.Donante.ToList();
+                   
                     Console.WriteLine("\n--- Menú Donantes ---");
                     Console.WriteLine("1. Agregar Donante");
                     Console.WriteLine("2. Editar Donante");

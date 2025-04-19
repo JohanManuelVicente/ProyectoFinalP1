@@ -70,7 +70,7 @@ namespace DonactivaRD
         public static void RegistrarDonacion( List<Donante> donantes, List<Organizacion> organizaciones, List<Campaña> campañas)
         {
             var context = new DonactivaRD_DataContext();
-            var donaciones = context.Donacion.ToList();
+           
 
             try
             {
@@ -94,7 +94,7 @@ namespace DonactivaRD
                 }
 
                 Donacion nueva = new Donacion();
-                nueva.Id = donaciones.Count();
+              
 
                 Console.WriteLine("Ingrese el ID del Donante:");
                 DonanteHelper.ListarDonantes();
@@ -117,7 +117,7 @@ namespace DonactivaRD
                 Console.WriteLine("Fecha de la donación (YYYY-MM-DD):");
                 nueva.Fecha = DateTime.Parse(Console.ReadLine());
 
-                donaciones.Add(nueva);
+                context.Donacion.Add(nueva);
                 context.SaveChanges();
                 Console.WriteLine("Donación registrada exitosamente.");
             }
@@ -188,11 +188,12 @@ namespace DonactivaRD
         public static void EliminarDonacion( int id)
         {
             var context = new DonactivaRD_DataContext();
-            var donaciones = context.Donacion.ToList();
+            Donacion nueva = new Donacion();
+
 
             try
             {
-                var donacion = donaciones.FirstOrDefault(d => d.Id == id);
+                var donacion = context.Donacion.FirstOrDefault(d => d.Id == id);
 
                 if (donacion == null)
                 {
@@ -200,7 +201,8 @@ namespace DonactivaRD
                     return;
                 }
 
-                donaciones.Remove(donacion);
+                context.Donacion.Remove(donacion);
+                context.SaveChanges();
                 Console.WriteLine("Donación eliminada correctamente.");
             }
             catch (Exception ex)
