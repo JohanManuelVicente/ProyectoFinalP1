@@ -33,7 +33,7 @@ namespace DonactivaRD
                     switch (opcion)
                     {
                         case 1:
-                            RegistrarDonacion( donantes, organizaciones, campañas);
+                            RegistrarDonacion( donantes, organizaciones, campañas, new DonanteService());
                             break;
                         case 2:
                             ListarDonaciones();
@@ -67,14 +67,16 @@ namespace DonactivaRD
             }
         }
 
-        public static void RegistrarDonacion( List<Donante> donantes, List<Organizacion> organizaciones, List<Campaña> campañas)
+        public static void RegistrarDonacion(
+     List<Donante> donantes,
+     List<Organizacion> organizaciones,
+     List<Campaña> campañas,
+     IDonanteService donanteService)
         {
             var context = new DonactivaRD_DataContext();
-           
 
             try
             {
-               
                 if (!donantes.Any())
                 {
                     Console.WriteLine("No hay donantes registrados. Debe registrar al menos uno antes de continuar.");
@@ -94,10 +96,9 @@ namespace DonactivaRD
                 }
 
                 Donacion nueva = new Donacion();
-              
 
                 Console.WriteLine("Ingrese el ID del Donante:");
-                DonanteHelper.ListarDonantes();
+                donanteService.ListarDonantes(); // <-- ahora correcto
                 nueva.DonanteId = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("Ingrese el ID de la Organización receptora:");
@@ -130,6 +131,7 @@ namespace DonactivaRD
                 Console.WriteLine($"Error al registrar donación: {ex.Message}");
             }
         }
+
 
         public static void ListarDonaciones()
         {
