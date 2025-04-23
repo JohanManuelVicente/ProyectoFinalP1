@@ -41,7 +41,8 @@ while (continuar)
             case 2:
                 try
                 {
-                    OrganizacionHelper.MenuOrganizaciones();
+                    var organizacionHelper = new OrganizacionHelper();
+                    organizacionHelper.Menu();
                 }
                 catch (Exception ex)
                 {

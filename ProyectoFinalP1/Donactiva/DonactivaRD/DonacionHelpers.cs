@@ -102,7 +102,8 @@ namespace DonactivaRD
                 nueva.DonanteId = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("Ingrese el ID de la Organización receptora:");
-                OrganizacionHelper.ListarOrganizaciones();
+                var organizacionHelper = new OrganizacionHelper();
+                organizacionHelper.ListarOrganizaciones();
                 nueva.OrganizacionId = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("Ingrese el ID de la Campaña asociada:");
